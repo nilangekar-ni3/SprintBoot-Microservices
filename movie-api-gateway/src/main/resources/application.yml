@@ -1,0 +1,24 @@
+server:
+  port: 8989
+  
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+      - id: movie-catalog-service
+        uri: lb://MOVIE-CATALOG-SERVICE
+        predicates:
+          - Path=/MovieCatalog/**
+        
+      - id: movie-info-service
+        uri: lb://MOVIE-INFO-SERVICE
+        predicates:
+          - Path=/MovieApp/**
+        
+      - id: movie-rating-service
+        uri: lb://MOVIE-RATING-SERVICE
+        predicates:
+          - Path=/RatingApp/**
+          
